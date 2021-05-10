@@ -18,16 +18,15 @@ app.post('/webhook', (req, res) => {
     let intentMap = new Map();
 
     // add intent map 2nd parameter pass function
-    intentMap.set('Default Welcome Intent',handleWebHookIntent)
+    intentMap.set('Default Welcome Intent', handleWelcomeIntent)
 
     // now agent is handle request and pass intent map
     agent.handleRequest(intentMap)
 })
 
-function handleWebHookIntent(agent){
-    agent.add("Hello I am Webhook demo How are you...")
+function handleWelcomeIntent(agent) {
+    agent.add(`Welcome to my agent!`);
 }
-
 /**
 * now listing the server on port number 3000 :)
 * */
