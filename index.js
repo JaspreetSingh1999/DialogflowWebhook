@@ -18,15 +18,21 @@ app.post('/webhook', (req, res) => {
     let intentMap = new Map();
 
     // add intent map 2nd parameter pass function
-    intentMap.set('Default Welcome Intent', handleWelcomeIntent)
+    intentMap.set('Default Welcome Intent', welcomeHandler)
+    intentMap.set('get-agent-name', getAgentNameHandler)
 
     // now agent is handle request and pass intent map
     agent.handleRequest(intentMap)
 })
 
-function handleWelcomeIntent(agent) {
+function welcomeHandler(agent) {
     agent.add(`Welcome to my agent!`);
 }
+
+function getAgentNameHandler(agent) {
+    agent.add('From fulfillment: My name is Dialogflow!');
+}
+
 /**
 * now listing the server on port number 3000 :)
 * */
