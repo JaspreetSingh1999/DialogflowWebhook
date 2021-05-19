@@ -20,6 +20,7 @@ app.post('/webhook', (req, res) => {
     // add intent map 2nd parameter pass function
     intentMap.set('Default Welcome Intent', welcomeHandler)
     intentMap.set('get-agent-name', getAgentNameHandler)
+    intentMap.set('get_credit_card_Bill', getCreditCardBill)
 
     // now agent is handle request and pass intent map
     agent.handleRequest(intentMap)
@@ -33,9 +34,15 @@ function getAgentNameHandler(agent) {
     agent.add('From fulfillment: My name is Dialogflow!');
 }
 
+function getCreditCardBill(agent) {
+    agent.add('Your minimum payment due on your card is $200 and your full payment due is $500.  Is there anything else can I help you with?');
+}
+
 /**
 * now listing the server on port number 3000 :)
 * */
-app.listen(3000, () => {
-    console.log("Server is Running on port 3000")
+
+const port = 8000 || process.env.PORT;
+app.listen(port, () => {
+    console.log(`Server is Running on port ${port}`)
 })
